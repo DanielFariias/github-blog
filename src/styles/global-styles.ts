@@ -33,7 +33,7 @@ export const GlobalStyle = createGlobalStyle`
       line-height: 160%;
   }
 
-  ul {
+ ul {
     list-style: none;
   }
 
