@@ -24,6 +24,7 @@ export const PostHeader = styled.div`
 `
 
 export const PostSummary = styled.p`
+  margin-top: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

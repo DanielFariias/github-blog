@@ -1,12 +1,19 @@
 import * as S from './styles'
 
-export function SearchForm() {
+interface ISearchFormProps {
+  amountPublications: number
+}
+
+export function SearchForm({ amountPublications }: ISearchFormProps) {
   return (
     <S.Container>
       <header>
         <h3>Publicações</h3>
 
-        <span>6 publicações</span>
+        <span>
+          {amountPublications}
+          {amountPublications === 1 ? ` Publicação` : ` Publicações`}
+        </span>
       </header>
 
       <form>

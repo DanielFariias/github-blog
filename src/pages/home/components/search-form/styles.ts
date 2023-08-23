@@ -32,6 +32,8 @@ export const Container = styled.div`
       border: 1px solid ${({ theme }) => theme.colors['base-border']};
       border-radius: 6px;
 
+      color: ${({ theme }) => theme.colors['base-text']};
+
       &::placeholder {
         color: ${({ theme }) => theme.colors['base-label']};
       }

@@ -28,7 +28,6 @@ export function HeaderCard() {
       const response = await fetch('https://api.github.com/users/DanielFariias')
       await new Promise((resolve) => setTimeout(resolve, 5000))
       const data = await response.json()
-      console.log(data)
       SetUser(data)
     } catch (error) {
       console.log(error)
@@ -76,9 +75,8 @@ export function HeaderCard() {
 
           <li>
             <UsersThree weight="fill" size={18} />
-            {user.followers === 1
-              ? `${user.followers} Seguindor`
-              : `${user.followers} Seguindores`}
+            {user.followers}
+            {user.followers === 1 ? ` Seguindor` : ` Seguindores`}
           </li>
         </ul>
       </S.ProfileDetails>
