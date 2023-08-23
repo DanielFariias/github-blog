@@ -8,6 +8,7 @@ import * as S from './styles'
 import { ExternalLink } from '@/components/external-link'
 import { useEffect, useState } from 'react'
 import { Spinner } from '../spinner'
+import postsService from '@/services/posts-service'
 
 interface ProfileData {
   login: string
@@ -25,10 +26,9 @@ export function HeaderCard() {
 
   async function fetchUserData() {
     try {
-      const response = await fetch('https://api.github.com/users/DanielFariias')
-      await new Promise((resolve) => setTimeout(resolve, 5000))
-      const data = await response.json()
-      SetUser(data)
+      const response = await postsService.getUser()
+
+      SetUser(response)
     } catch (error) {
       console.log(error)
     } finally {

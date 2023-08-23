@@ -94,4 +94,8 @@ export const SpinnerContainer = styled.div`
       }
     }
   }
+
+  &.spacing-top {
+    padding-top: 4rem;
+  }
 `

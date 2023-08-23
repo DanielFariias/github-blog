@@ -1,8 +1,12 @@
 import { SpinnerContainer } from './styles'
 
-export function Spinner() {
+interface SpinnerProps {
+  spacingTop?: boolean
+}
+
+export function Spinner({ spacingTop }: SpinnerProps = {}) {
   return (
-    <SpinnerContainer>
+    <SpinnerContainer className={spacingTop ? 'spacing-top' : ''}>
       <div>
         <div className="sk-chase-dot"></div>
         <div className="sk-chase-dot"></div>

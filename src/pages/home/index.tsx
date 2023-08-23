@@ -4,6 +4,8 @@ import { SearchForm } from './components/search-form'
 
 import * as S from './styles'
 import { PostCard } from './components/post-card'
+import postsService from '@/services/posts-service'
+import { Spinner } from './components/spinner'
 
 interface IPost {
   id: number
@@ -19,13 +21,11 @@ export function Home() {
   async function getPost(query: string = '') {
     try {
       setIsLoading(true)
-      const response = await fetch(
-        `https://api.github.com/search/issues?q=${query}%20label:published%20repo:DanielFariias/github-blog`,
-      )
-      const data = await response.json()
-      setPosts(data.items)
-    } catch (e) {
-      console.log(e)
+      const response = await postsService.getByQuery(query)
+
+      setPosts(response.items)
+    } catch (error) {
+      console.log(error)
     } finally {
       setIsLoading(false)
     }
@@ -40,16 +40,19 @@ export function Home() {
       <HeaderCard />
       <SearchForm amountPublications={posts.length} />
 
-      <S.CardList>
-        {posts.map((post) => (
-          <PostCard
-            key={post.id}
-            title={post.title}
-            description={post.body}
-            createdAt={post.created_at}
-          />
-        ))}
-      </S.CardList>
+      {isLoading && <Spinner spacingTop />}
+      {!isLoading && (
+        <S.CardList>
+          {posts.map((post) => (
+            <PostCard
+              key={post.id}
+              title={post.title}
+              description={post.body}
+              createdAt={post.created_at}
+            />
+          ))}
+        </S.CardList>
+      )}
     </S.Container>
   )
 }
