@@ -2,7 +2,7 @@ import { styled } from 'styled-components'
 
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors['base-post']};
-  max-width: 26rem;
+  min-width: 26rem;
   padding: 2rem;
 
   border-radius: 10px;

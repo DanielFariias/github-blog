@@ -7,7 +7,12 @@ export const Container = styled.div`
 export const CardList = styled.ul`
   margin-top: 3rem;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   flex-wrap: wrap;
   gap: 2rem;
+
+  @media (max-width: 56rem) {
+    grid-template-columns: 1fr;
+  }
 `
