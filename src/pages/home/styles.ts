@@ -4,7 +4,7 @@ export const Container = styled.div`
   margin-bottom: 6rem;
 `
 
-export const CardList = styled.ul`
+export const CardList = styled.section`
   margin-top: 3rem;
 
   display: grid;

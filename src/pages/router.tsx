@@ -1,7 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import { Home } from './home'
 import { LayoutDefault } from '@/layouts/default'
+
+import { Home } from './home'
+import { Post } from './post'
 
 export function Router() {
   return (
@@ -9,6 +11,7 @@ export function Router() {
       <Routes>
         <Route path="/" element={<LayoutDefault />}>
           <Route path="/" element={<Home />} />
+          <Route path="/post/:id" element={<Post />} />
         </Route>
       </Routes>
     </BrowserRouter>

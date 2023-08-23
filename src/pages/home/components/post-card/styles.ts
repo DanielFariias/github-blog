@@ -4,11 +4,18 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors['base-post']};
   min-width: 26rem;
   padding: 2rem;
+  cursor: pointer;
 
+  border: 2px solid ${({ theme }) => theme.colors['base-background']};
   border-radius: 10px;
+  transition: border 0.2s ease-in-out;
+
+  &:hover {
+    border: 2px solid ${({ theme }) => theme.colors['base-label']};
+  }
 `
 
-export const PostHeader = styled.div`
+export const PostHeader = styled.header`
   display: flex;
   justify-content: space-between;
 

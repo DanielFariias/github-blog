@@ -12,12 +12,13 @@ interface IPost {
   title: string
   body: string
   created_at: string
+  number: number
 }
 
 export function Home() {
   const [posts, setPosts] = useState<IPost[]>([])
   const [isLoading, setIsLoading] = useState(false)
-
+  console.log(posts)
   async function getPost(query: string = '') {
     try {
       setIsLoading(true)
@@ -44,12 +45,13 @@ export function Home() {
       {!isLoading && (
         <S.CardList>
           {posts.map((post) => (
-            <PostCard
-              key={post.id}
-              title={post.title}
-              description={post.body}
-              createdAt={post.created_at}
-            />
+            <a href={`/post/${post.number}`} key={post.id}>
+              <PostCard
+                title={post.title}
+                description={post.body}
+                createdAt={post.created_at}
+              />
+            </a>
           ))}
         </S.CardList>
       )}
