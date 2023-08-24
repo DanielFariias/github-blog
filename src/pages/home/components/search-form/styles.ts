@@ -34,6 +34,11 @@ export const Container = styled.div`
 
       color: ${({ theme }) => theme.colors['base-text']};
 
+      &:focus {
+        border-color: ${({ theme }) => theme.colors['brand-blue']};
+        outline: none;
+      }
+
       &::placeholder {
         color: ${({ theme }) => theme.colors['base-label']};
       }

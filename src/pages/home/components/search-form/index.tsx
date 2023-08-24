@@ -1,10 +1,32 @@
+import * as z from 'zod'
 import * as S from './styles'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 interface ISearchFormProps {
   amountPublications: number
+  getPosts: (query?: string) => void
 }
 
-export function SearchForm({ amountPublications }: ISearchFormProps) {
+const searchFormSchema = z.object({
+  query: z.string(),
+})
+
+type SearchFormSchemaType = z.infer<typeof searchFormSchema>
+
+export function SearchForm({ amountPublications, getPosts }: ISearchFormProps) {
+  const { handleSubmit, register, reset } = useForm<SearchFormSchemaType>({
+    resolver: zodResolver(searchFormSchema),
+    defaultValues: {
+      query: '',
+    },
+  })
+
+  function handleSearchPosts(data: SearchFormSchemaType) {
+    getPosts(data.query)
+    reset()
+  }
+
   return (
     <S.Container>
       <header>
@@ -16,8 +38,12 @@ export function SearchForm({ amountPublications }: ISearchFormProps) {
         </span>
       </header>
 
-      <form>
-        <input type="text" placeholder="Pesquisar conteúdo" />
+      <form onSubmit={handleSubmit(handleSearchPosts)}>
+        <input
+          type="text"
+          placeholder="Pesquisar conteúdo"
+          {...register('query')}
+        />
       </form>
     </S.Container>
   )

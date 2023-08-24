@@ -18,8 +18,8 @@ interface IPost {
 export function Home() {
   const [posts, setPosts] = useState<IPost[]>([])
   const [isLoading, setIsLoading] = useState(false)
-  console.log(posts)
-  async function getPost(query: string = '') {
+
+  async function getPosts(query: string = '') {
     try {
       setIsLoading(true)
       const response = await postsService.getByQuery(query)
@@ -33,13 +33,13 @@ export function Home() {
   }
 
   useEffect(() => {
-    getPost()
+    getPosts()
   }, [])
 
   return (
     <S.Container>
       <HeaderCard />
-      <SearchForm amountPublications={posts.length} />
+      <SearchForm amountPublications={posts.length} getPosts={getPosts} />
 
       {isLoading && <Spinner spacingTop />}
       {!isLoading && (
