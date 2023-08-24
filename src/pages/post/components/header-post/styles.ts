@@ -7,7 +7,7 @@ export const Container = styled.div`
   background: ${({ theme }) => theme.colors['base-profile']};
   box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  padding: 2rem 2.5rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
 
@@ -19,6 +19,8 @@ export const Container = styled.div`
 
   h3 {
     margin-top: 1rem;
+    font-size: ${({ theme }) => theme.textSizes['title-title-l']};
+    color: ${({ theme }) => theme.colors['base-title']};
   }
 
   ul {

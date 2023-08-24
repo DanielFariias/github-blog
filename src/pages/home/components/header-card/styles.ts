@@ -30,7 +30,7 @@ export const ProfileDetails = styled.div`
     justify-content: space-between;
     margin-bottom: 0.5rem;
 
-    h1 {
+    strong {
       font-size: ${({ theme }) => theme.textSizes['title-title-l']};
       color: ${({ theme }) => theme.colors['base-title']};
       line-height: 130%;

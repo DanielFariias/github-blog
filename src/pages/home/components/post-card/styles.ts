@@ -26,6 +26,8 @@ export const PostHeader = styled.header`
 
   h3 {
     max-width: 15rem;
+    font-size: ${({ theme }) => theme.textSizes['title-title-m']};
+    color: ${({ theme }) => theme.colors['base-title']};
 
     overflow: hidden;
     text-overflow: ellipsis;
