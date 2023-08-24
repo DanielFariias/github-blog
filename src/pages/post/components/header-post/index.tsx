@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import {
   ArrowSquareOut,
   Calendar,
@@ -5,11 +6,16 @@ import {
   ChatText,
   GithubLogo,
 } from 'phosphor-react'
-import * as S from './styles'
+
 import { ExternalLink } from '@/components/external-link'
-import { useNavigate } from 'react-router-dom'
-import { Spinner } from '@/pages/home/components/spinner'
 import { IPost } from '../..'
+
+import { Spinner } from '@/pages/home/components/spinner'
+
+import { formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
+
+import * as S from './styles'
 
 interface IHeaderPost {
   post: IPost
@@ -52,7 +58,12 @@ export function HeaderPost({ post, isLoading }: IHeaderPost) {
         </li>
 
         <li>
-          <Calendar weight="fill" size={18} /> {post.created_at}
+          <Calendar weight="fill" size={18} />
+          {post.created_at &&
+            formatDistanceToNow(new Date(post.created_at), {
+              addSuffix: true,
+              locale: ptBR,
+            })}
         </li>
 
         <li>

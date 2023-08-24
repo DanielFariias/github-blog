@@ -1,4 +1,6 @@
+import { formatDistanceToNow } from 'date-fns'
 import * as S from './styles'
+import { ptBR } from 'date-fns/locale'
 
 interface IPostCardProps {
   title: string
@@ -12,7 +14,12 @@ export function PostCard({ title, description, createdAt }: IPostCardProps) {
       <S.PostHeader>
         <h3>{title}</h3>
 
-        <span>{createdAt}</span>
+        <small>
+          {formatDistanceToNow(new Date(createdAt), {
+            addSuffix: true,
+            locale: ptBR,
+          })}
+        </small>
       </S.PostHeader>
 
       <S.PostSummary>{description}</S.PostSummary>
