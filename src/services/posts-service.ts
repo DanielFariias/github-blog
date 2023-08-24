@@ -23,7 +23,7 @@ class PostsService implements IPostsService {
   }
 
   async getById(id: string) {
-    // await delay()
+    await delay()
     console.log(id)
     return this.httpClient.get(`/repos/${username}/${repoName}/issues/${id}`)
   }

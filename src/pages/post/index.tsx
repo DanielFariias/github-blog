@@ -3,13 +3,14 @@ import { useParams } from 'react-router-dom'
 
 import PostsService from '@/services/posts-service'
 import { HeaderPost } from './components/header-post'
+import { PostContent } from './components/content-post'
 
 interface IUser {
   id: number
   login: string
 }
 
-interface IPost {
+export interface IPost {
   id: number
   title: string
   body: string
@@ -23,14 +24,18 @@ export function Post() {
   const { id } = useParams()
 
   const [post, setPost] = useState({} as IPost)
+  const [isLoading, setIsLoading] = useState(false)
 
   const getPost = useCallback(async () => {
     try {
+      setIsLoading(true)
       const response = await PostsService.getById(id as string)
       console.log(response)
       setPost(response)
     } catch (error) {
       console.log(error)
+    } finally {
+      setIsLoading(false)
     }
   }, [id])
 
@@ -39,12 +44,9 @@ export function Post() {
   }, [getPost])
 
   return (
-    <HeaderPost
-      title={post.title}
-      username={post?.user?.login}
-      commentsAmount={post.comments}
-      createdAt={post.created_at}
-      postUrl={post.html_url}
-    />
+    <>
+      <HeaderPost post={post} isLoading={isLoading} />
+      <PostContent content={post.body} />
+    </>
   )
 }
